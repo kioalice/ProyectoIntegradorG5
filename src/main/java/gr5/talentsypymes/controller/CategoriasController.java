@@ -1,0 +1,80 @@
+package gr5.talentsypymes.controller;
+
+import gr5.talentsypymes.model.Categoria;
+import gr5.talentsypymes.service.ICategoriasService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
+
+@Controller
+@RequestMapping("/categorias")
+public class CategoriasController {
+
+    @Autowired
+    private ICategoriasService iCategoriasService;
+
+
+    // @GetMapping("/index")
+    @RequestMapping(value="/index", method= RequestMethod.GET)
+    public String mostrarIndex(Model model) {
+        List<Categoria> lista = iCategoriasService.buscarTodas();
+         model.addAttribute("categorias", lista);
+        return "categorias/listCategorias";
+    }
+
+    // @GetMapping("/create")
+    @RequestMapping(value="/creacion", method=RequestMethod.GET)
+    public String crear(Categoria categoria) {
+
+        return "categorias/formCategoria";
+    }
+
+
+    //@PostMapping("/save")
+    @RequestMapping(value="/guardar", method=RequestMethod.POST)
+    public String guardar(Categoria categoria, BindingResult result, RedirectAttributes attributes) {
+        if(result.hasErrors()){
+            System.out.println("Error en guardar");
+            return "categorias/formCategoria";
+        }
+        iCategoriasService.guardar(categoria);
+        attributes.addFlashAttribute("msg", "La categoría fue guardada con éxito \uD83D\uDE00");
+        return "redirect:/categorias/index";
+    }
+
+    /**Por editar**/
+    @GetMapping("/editar/{id}")
+    public String editar(@PathVariable("id") int idCategoria, Model model) {
+        Categoria categoria = iCategoriasService.buscarPorId(idCategoria);
+        model.addAttribute("categoria", categoria);
+        return "categorias/formCategoria";
+    }
+
+
+    @GetMapping("/borrar/{id}")
+    public String eliminar(@PathVariable("id") int idCategoria, RedirectAttributes attributes) {
+
+        // Eliminamos la categoria.
+        iCategoriasService.eliminar(idCategoria);
+
+        attributes.addFlashAttribute("msg", "La categoría fue eliminada!.");
+        //return "redirect:/categorias/index";
+        return "redirect:/categorias/index";
+    }
+
+
+
+
+
+
+
+
+}

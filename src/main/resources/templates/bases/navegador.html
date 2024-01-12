@@ -1,0 +1,65 @@
+
+<nav id="nav" th:fragment="menu-principal">
+  <div class="logo">
+    <a th:href="@{/}">
+      <img th:src="@{/images/typ.png}" alt="grupo 5">
+    </a>
+  </div>
+
+
+<ul>
+    <li  sec:authorize="isAuthenticated()">
+        <a  th:href="@{/}">Talentos</a>
+    </li>
+    <li sec:authorize="isAuthenticated()">
+        <a th:href="@{/}">Pymes</a>
+    </li>
+    <li  sec:authorize="isAuthenticated()">
+        <a  th:href="@{/}">Foros</a>
+    </li>
+    <li sec:authorize="isAuthenticated()">
+        <a th:href="@{/acerca}">Nosotros</a>
+    </li>
+    <li  sec:authorize="isAuthenticated()">
+        <a  th:href="@{/}">Contáctanos</a>
+    </li>
+<!--    <li  sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">-->
+<!--      <a  th:href="@{/solicitudes/indexPaginate}">Solicitudes</a>-->
+<!--    </li>-->
+    <li sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
+      <a th:href="@{/pymes/indexPaginate}">Pymes</a>
+    </li>
+    <li  sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')">
+      <a  th:href="@{/categorias/index}">Categorías</a>
+    </li>
+    <li  sec:authorize="hasAnyAuthority('ADMINISTRADOR')">
+      <a  th:href="@{/usuarios/index}">Usuarios</a>
+    </li>
+</ul>
+
+
+
+<ul sec:authorize="isAnonymous()">
+      <li>
+        <a onclick="seleccionar()" th:href="@{/}">Pymes</a>&nbsp; </li>
+      <li>
+        <a onclick="seleccionar()" th:href="@{#}">&nbsp;Talentos&nbsp;</a>&nbsp;</li>
+      <li>
+        <a onclick="seleccionar()" th:href="@{/acerca}">Nosotros</a>&nbsp; </li>
+      <li>
+        <a onclick="seleccionar()" th:href="@{/index}">Ingresar</a>&nbsp; </li>
+      <li>
+        <a onclick="seleccionar()" th:href="@{/signup}">Registrarse</a>&nbsp;</li>
+    <li>
+        <a onclick="seleccionar()" th:href="@{/contacto}">Contáctanos</a>&nbsp;</li>
+</ul>
+
+
+  <div sec:authorize="isAuthenticated()">
+    <span class="text-light">Bienvenido,</span>&nbsp;<span class="text-light" sec:authentication="name"></span >&nbsp;
+    <a class="boton boton-guardar" th:href="@{/logout}">Salir</a>
+  </div>
+</nav>
+<div class="nav-responsive" onclick="mostrarOcultarMenu()">
+  <i class="fa-solid fa-bars">☰</i>
+</div>

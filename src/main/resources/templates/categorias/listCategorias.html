@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:fragment="head-principal">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Talents&Pymes</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+
+    <link th:href="@{/bootstrap/css/estilo.css}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/90e8f06232.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<header class="navbonito" th:insert="bases/navegador :: menu-principal"> </header>
+
+<main role="main">
+    <hr>
+    <div class="container">
+
+        <div class="listas">
+            <h4 class="titulolistas"><strong>Listado de Categorías</strong></h4>
+            <div class="card-body">
+                <a class="boton boton-guardar" th:href="@{/categorias/creacion}" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>
+                <hr>
+                <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+                <table class="table table-hover">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="cat : ${categorias}">
+                        <th scope="row" th:text="${cat.idCategoria}"></th>
+                        <td th:text="${cat.nombreCategoria}"></td>
+                        <td th:text="${cat.descripcion}"></td>
+                        <td>
+                            <a th:href="@{/categorias/editar/{id} (id=${cat.idCategoria}) }" class="btn btn-listas btn-sm" role="button" title="Editar"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                            <a th:href="@{/categorias/borrar/{id} (id=${cat.idCategoria}) }" onclick="return confirm('¿Estas seguro?')" class="btn btn-listas btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div> <!-- /container -->
+
+</main>
+
+<footer th:insert="bases/footer :: footer-principal" class="footer"></footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

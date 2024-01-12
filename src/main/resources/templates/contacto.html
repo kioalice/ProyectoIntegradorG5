@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:fragment="head-principal">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Talents&Pymes</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+
+    <link th:href="@{/bootstrap/css/estilo.css}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/90e8f06232.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<header class="navbonito" th:insert="bases/navegador :: menu-principal"> </header>
+
+
+<div class="contenido">
+    <br><br>
+    <h2 class="text-center">¿Necesitas asesoría? contacta a nuestro equipo Talents&Pymes</h2>
+        <br>
+        <div class="call">
+            <img src="../images/call.jpg">
+
+            <br>
+            <div class="text-center flex-column">
+                <h3>CONTACTO@TALENTSYPYMES.CL</h3>
+
+                <h3>DIRECCIÓN: AV. SIEMPRE VIVA 123</h3>
+                <h3>FONO: 912345678 - 2222222222</h3>
+            </div>
+
+        </div>
+    <br>
+    <div class="whatsapp">
+        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        <br><br>
+        <p>Envianos tus consultas por whatsapp y un asesor te responderá a la brevedad</p>
+
+    </div>
+
+
+
+
+
+
+    <!-- Contenido principal de la página -->
+</div>
+<br>
+<br>
+<br>
+<br>
+
+
+<footer class="footer bg-dark" th:insert="bases/footer :: footer-principal">
+
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

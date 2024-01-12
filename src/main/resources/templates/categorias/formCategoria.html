@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:fragment="head-principal">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Talents&Pymes</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+
+    <link th:href="@{/bootstrap/css/estilo.css}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/90e8f06232.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<header class="navbonito" th:insert="bases/navegador :: menu-principal"> </header>
+
+<main role="main">
+    <hr>
+    <div class="container-categorias">
+
+        <div class="formpymes">
+            <h4 class="titulolistas"><strong>Datos de la categoría</strong></h4>
+            <div class="card-body" style="padding: 35px">
+                <form th:action="@{/categorias/guardar}" method="post" th:object="${categoria}">
+                    <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
+                        Por favor corrija los siguientes errores:
+                        <ul>
+                            <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="nombreCategoria">Nombre</label>
+                                <input type="text" class="item-pymes" id="nombreCategoria" name="nombreCategoria" placeholder="Escriba el nombre de la categoria" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="descripcion">Descripción</label>
+                                <textarea class="item-pymes" name="descripcion" id="descripcion" rows="2"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <button type="submit" title="Guardar el registro" class="boton boton-guardar">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div> <!-- /container -->
+
+</main>
+
+<footer th:insert="bases/footer :: footer-principal" class="footer"></footer>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

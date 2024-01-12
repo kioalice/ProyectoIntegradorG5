@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:fragment="head-principal">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Talents&Pymes</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+
+    <link th:href="@{/bootstrap/css/estilo.css}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/90e8f06232.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<header th:insert="bases/navegador :: menu-principal"> </header>
+
+<main role="main">
+
+
+    <div class="contenedor-home">
+        <div class="contenido-home">
+            <h3>Encuentra el lugar ideal para demostrar tus habilidades.</h3>
+            <p style="color: black">Puedes buscar por descripción y categoría.</p>
+
+            <form class="form-inline" th:action="@{/search}" method="get" th:object="${search}">
+                <input style="background-color: white" type="text" class="form-control mb-3" th:field="*{descripcion}" placeholder="Escriba una búsqueda">&nbsp;
+                <select th:field="*{categoria.idCategoria}" class="custom-select custom-select mb-3">
+                    <option th:value="${null}" selected>Seleccione una categoría</option>
+                    <option th:each="categoria: ${categorias}"
+                            th:value="${categoria.idCategoria}"
+                            th:text="${categoria.nombreCategoria}"></option>
+                </select>&nbsp;
+                <button type="submit" class="btn boton-purpura mb-3">Buscar</button>
+            </form>
+            <hr>
+            <div class="container">
+                <h2 class="font-weight-bold text-center text-capitalize">DESTACADOS</h2>
+                <div th:if="${msg != null}" class="alert alert-success" th:text="${msg}" role="alert"></div>
+                <hr>
+        </div>
+    </div>
+
+        <div class="gato card-home" th:each="pymes : ${VacantePymes}">
+            <div class="col-md-5">
+            <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${pymes.imagen} ) }" alt="Generic placeholder image" width="220" height="220">
+            </div>
+            <div class="col-md-7">
+                <h2 th:text="${pymes.nombre}"></h2>
+                <h6 class="card-title"><strong>Categoría: </strong><span th:text="${pymes.categoria.nombreCategoria}"></span></h6>
+                <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${#dates.format(pymes.fecha, 'dd-MM-yyyy')}"></span></h6>
+                <p style="color: #4c1e62" th:text="${pymes.descripcion}"></p>
+                <p><a class="btn" th:href="@{/pymes/vista/{id} (id=${pymes.pymeId}) }"  role="button">Detalles &raquo;</a></p>
+            </div>
+        </div>
+    </div> <!-- /container -->
+
+</main>
+<br>
+<br>
+<br>
+<footer class="footer bg-dark" th:insert="bases/footer :: footer-principal">
+
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

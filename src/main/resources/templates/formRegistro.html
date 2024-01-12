@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:fragment="head-principal">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="favicon.ico">
+
+  <title>Talents&Pymes</title>
+  <!-- Bootstrap core CSS -->
+  <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+
+  <link th:href="@{/bootstrap/css/estilo.css}" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/90e8f06232.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<header class="navbonito" th:insert="bases/navegador :: menu-principal"> </header>
+
+<section class="contenedorRegistro">
+  <div class="crear">
+    <h1>Crear cuenta</h1>
+    <form th:action="@{/signup}" th:object="${usuario}" method="post">
+      <div class="nombres">
+        <div class="contenido">
+          <input class="cambios"
+                 type="text" th:field="*{nombre}" id="nombre" name="nombre"
+                 placeholder="Nombre"
+                 required></div>
+        <div class="contenido">
+          <input class="cambios"
+                 type="text" th:field="*{apellido}" id="apellido" name="apellido"
+                 placeholder="Apellido"
+                 required></div>
+      </div>
+      <div class="contenido">
+        <input class="input"
+               type="email"
+               placeholder="Email" th:field="*{email}" id="email" name="email"
+               required></div>
+      <div class="contenido">
+        <input class="input"
+               type="text"
+               placeholder="Username" th:field="*{username}" id="username" name="username"
+               required></div>
+      <div class="contenido">
+        <input class="input"
+               type="password" placeholder="Contraseña" th:field="*{password}" id="password" name="password"
+               required></div>
+      <div class="contenido">
+        <button
+                type="submit">Crear</button></div>
+    </form>
+
+    <hr>
+
+    <p>¿Ya estás registrado? <a href="ingresarcuenta.html">Ingresa con tu cuenta</a></p>
+  </div>
+</section>
+
+
+<footer class="footer bg-dark" th:insert="bases/footer :: footer-principal">
+
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

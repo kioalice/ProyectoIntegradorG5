@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:fragment="head-principal">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Talents&Pymes</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+
+    <link th:href="@{/bootstrap/css/estilo.css}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/90e8f06232.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<header class="navbonito" th:insert="bases/navegador :: menu-principal"> </header>
+
+<h1 th:text="${mensaje}">Bienvenido a Talents&Pymes</h1>
+
+<div class="contenidov">
+    <img class="logoGrande" src="../images/nosotrosEquipo.png">
+    <div class="nosotross">
+        <div>
+            En nuestra presentación, nos complace darles la bienvenida a T&P, un
+            equipo compuesto por cinco estudiantes de un bootcamp de desarrollo full stack.
+            Nuestro origen se encuentra en el firme propósito de crear una plataforma
+            destinada a impulsar alianzas mutuamente beneficiosas entre jóvenes talentos
+            y pequeñas y medianas empresas (Pymes).
+        </div>
+        <br />
+        <div>
+            Nuestro enfoque primordial radica en facilitar la adquisición de
+            experiencia laboral, especialmente para aquellos talentos que, hasta
+            ahora, no han tenido la oportunidad de acceder a ella. Esto lo
+            logramos mediante la colaboración en equipo con Pymes que requieren
+            asesoría técnica y no cuentan con los recursos financieros para
+            contratar a profesionales de amplia trayectoria.
+        </div>
+        <br />
+        <div>
+            En T&P, creemos firmemente que la formación de alianzas constituye un
+            pilar esencial para el progreso, la innovación y el bienestar de todos
+            los involucrados. Por lo tanto, extendemos una cordial invitación a
+            jóvenes talentos y a las pequeñas y medianas empresas para que se unan
+            a nosotros en esta cooperación, con el fin de alcanzar metas que
+            quizás hasta ahora les parecían inalcanzables.
+        </div>
+    </div>
+    <!-- Contenido principal de la página -->
+</div>
+<br>
+<br>
+<br>
+<br>
+
+
+<footer class="footer bg-dark" th:insert="bases/footer :: footer-principal">
+
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
